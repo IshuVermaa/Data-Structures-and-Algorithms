@@ -1,0 +1,46 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+bool compare(pair<int,int> a, pair<int,int>b)
+{
+    return a.first>b.first;
+}
+int main()
+{
+    int n,p,d,i,j;
+    vector<pair<int , int>>job;
+    cin>>n;
+    for(i=0;i<n;i++)
+    {
+        cin>>p>>d;
+        job.push_back(make_pair(p,d));
+    }
+    sort(job.begin(), job.end(),compare);
+    int maxEnd=0;
+    for(i=0;i<n;i++)
+    {
+        if(job[i].second>maxEnd)
+            maxEnd=job[i].second;
+    }
+    int fill[maxEnd];
+    int maxProfit=0,c=0;
+    for(i=0;i<maxEnd;i++)
+    {
+        fill[i]=-1;
+    }
+    for(i=0;i<n;i++)
+    {
+        j=job[i].second-1;
+        while(j>=0 && fill[j]!=-1)
+            j--;
+        if(j>=0 && fill[j]==-1)
+        {
+            fill[j]=i;
+            maxProfit+=job[i].first;
+            c++;
+        }
+    }
+    cout<<c<<" "<<maxProfit;
+    return 0;
+}
