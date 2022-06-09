@@ -1,0 +1,77 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+int primMST(int g[100][100], int v);
+void addEdge(vector<int>adj[], int u, int v,int m[100][100], int wt)
+{
+    m[u][v]=wt;
+    m[v][u]=wt;
+}
+void print(int adj[100][100], int v)
+{
+    int i,j;
+    for(i=0;i<v;i++)
+    {
+        for(j=0;j<v;j++)
+        {
+            cout<<adj[i][j]<<" ";
+        }
+        cout<<"\n";
+    }
+
+}
+int main()
+{
+    int v;
+    cout<<"\nEnter the number of vertices";
+    cin>>v;
+    int graph[100][100]={0};
+    vector<int> adj[v];
+
+    addEdge(adj,0,1,graph,1);
+    addEdge(adj,0,2,graph,2);
+    addEdge(adj,1,2,graph,3);
+    addEdge(adj,1,3,graph,4);
+    print(graph,v);
+    int res=primMST(graph,v);
+    cout<<"prims = "<<res;
+    return 0;
+}
+int primMST(int g[100][100], int v)
+{
+    int key[v], res=0;
+    key[0]=0;
+    for(int i=1;i<v;i++)
+        key[i]=INT_MAX;
+    bool mset[v]={false};
+    for(int c=0;c<v;c++)
+    {
+        int u=-1;
+        for(int i=0;i<v;i++)
+        {
+            if(!mset[i] && (u==-1 || key[i]<key[u]))
+                u=i;
+        }
+        mset[u]=true;
+        res=res+key[u];
+        for(int k=0;k<v;k++)
+        {
+            if(g[u][k]!=0 && !mset[k])
+                key[k]=min(key[k],g[u][k]);
+
+        }
+    }
+    return res;
+}
+
+
+
+
+
+
+
+
+
+
+
+
