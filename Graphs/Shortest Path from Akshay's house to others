@@ -1,0 +1,97 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+#define V 6		//No of vertices
+int getI(int c,vector<int>);
+int selectMinVertex(vector<int>& value,vector<bool>& processed)
+{
+	int minimum = INT_MAX;
+	int vertex;
+	for(int i=0;i<V;++i)
+	{
+		if(processed[i]==false && value[i]<minimum)
+		{
+			vertex = i;
+			minimum = value[i];
+		}
+	}
+	return vertex;
+}
+
+void dijkstra(int graph[V][V])
+{
+	int parent[V];	
+	vector<int> value(V,INT_MAX);	
+	vector<bool> processed(V,false);	
+    vector<int> st[V];
+	
+	parent[0] = -1;	
+	value[0] = 0;	
+	
+	for(int i=0;i<V-1;++i)
+	{
+		//Select best Vertex by applying greedy method
+		int U = selectMinVertex(value,processed);
+		processed[U] = true;	//Include new Vertex in shortest Path Graph
+		for(int j=0;j<V;++j)
+		{
+			if(graph[U][j]!=0 && processed[j]==false && value[U]!=INT_MAX
+			&& (value[U]+graph[U][j] < value[j]))
+			{
+				value[j] = value[U]+graph[U][j];
+				//st[U].push_back(j);
+				parent[j] = U;
+			}
+		}
+		/*if(U==2)
+        {
+            cout<<"\n->";
+
+            for(int k=0;k<value.size();k++)
+                cout<<value[k]<<" ";
+                 cout<<"\n....";
+        }*/
+	}
+	
+	cout<<"\n";
+	int k;
+	for(int i=1;i<V;++i)
+	{
+	    int x=i;
+	    cout<<"Akshay's house to "<<"House "<<i<<"  distance = "<<value[i]<<"Path is :";
+	    while(parent[x]!=-1)
+        {
+            //cout<<parent[x]<<" ";
+            st[i].push_back(parent[x]);
+            x=getI(parent[x],value);
+        }
+        //
+        for(k=st[i].size()-1;k>=0;k--)
+        {
+            cout<<st[i][k]<<" ";
+        }
+        cout<<i;
+        cout<<"\n";
+	}
+}
+int getI(int c, vector<int>value)
+{
+    for(int i=0;i<V;i++)
+    {
+        if(c==value[i])
+            return i;
+    }
+    return 0;
+}
+int main()
+{
+	int graph[V][V] = { {0, 1, 4, 0, 0, 0},
+						{1, 0, 4, 2, 7, 0},
+						{4, 4, 0, 3, 5, 0},
+						{0, 2, 3, 0, 4, 6},
+						{0, 7, 5, 4, 0, 7},
+						{0, 0, 0, 6, 7, 0} };
+
+	dijkstra(graph);
+	return 0;
+}
