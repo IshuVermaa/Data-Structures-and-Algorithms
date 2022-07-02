@@ -1,0 +1,16 @@
+Complexity Of Depth-First Search Algorithm
+The time complexity of depth-first search algorithm
+
+If the entire graph is traversed, the temporal complexity of DFS is O(V), where V is the number of vertices.
+
+If the graph data structure is represented as an adjacency list, the following rules apply:
+Each vertex keeps track of all of its neighboring edges. Let's pretend there are V vertices and E edges in the graph.
+You find all of a node's neighbors by traversing its adjacency list only once in linear time.
+The sum of the sizes of the adjacency lists of all vertices in a directed graph is E. In this example, the temporal complexity is O(V) + O(E) = O(V + E).
+Each edge in an undirected graph appears twice. Once at either end of the edge's adjacency list. This case's temporal complexity will be O(V) + O (2E) O(V + E).
+If the graph is represented as adjacency matrix V x V array:
+To find all of a vertex's outgoing edges, you will have to traverse a whole row of length V in the matrix.
+Each row in an adjacency matrix corresponds to a node in the graph; each row stores information about the edges that emerge from that vertex. As a result, DFS's temporal complexity in this scenario is O(V * V) = O. (V2).
+The space complexity of depth-first search algorithm
+
+Because you are keeping track of the last visited vertex in a stack, the stack could grow to the size of the graph's vertices in the worst-case scenario. As a result, the complexity of space is O. (V).
