@@ -1,0 +1,21 @@
+Application Of Depth-First Search Algorithm
+The minor spanning tree is produced by the DFS traversal of an unweighted graph.
+________________________________________________________________________________________________
+Detecting a graph's cycle: A graph has a cycle if and only if a back edge is visible during DFS. As a result, you may run DFS on the graph to look for rear edges.
+____________________________________________________________________________________________________________________________________________________________________________________-
+Topological Sorting: Topological Sorting is mainly used to schedule jobs based on the dependencies between them. 
+In computer science, sorting arises in instruction scheduling, ordering formula cell evaluation when recomputing formula values in spreadsheets, logic synthesis,
+determining the order of compilation tasks to perform in makefiles, data serialization, and resolving symbols dependencies linkers.
+_____________________________________________________________________________________________________________________________________________________________________________-
+To determine if a graph is bipartite: You can use either BFS or DFS to color a new vertex opposite its parents when you first discover it.
+And check that each other edge does not connect two vertices of the same color. A connected component's first vertex can be either red or black.
+______________________________________________________________________________________________________________________________________________________________________________-
+Finding Strongly Connected Components in a Graph: A directed graph is strongly connected if each vertex in the graph has a path to every other vertex.
+__________________________________________________________________________________________________________________________________________________________________________________
+Solving mazes and other puzzles with only one solution:By only including nodes the current path in the visited set, DFS is used to locate all keys to a maze.
+____________________________________________________________________________________________________________________________________________________________________________
+Path Finding: The DFS algorithm can be customized to discover a path   between two specified vertices, a and b.
+
+Use s as the start vertex in DFS(G, s).
+Keep track of the path between the start vertex and the current vertex using a stack S.
+Return the path as the contents of the stack as soon as destination vertex c is encountered.
